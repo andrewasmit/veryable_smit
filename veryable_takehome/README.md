@@ -1,27 +1,32 @@
-# React + TypeScript + Vite
+# Take home assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This React application is built using modern web technologies to provide a dynamic and responsive user experience. It leverages the following key technologies and libraries:
 
-Currently, two official plugins are available:
+- **React:** The foundation of the application, providing a component-based architecture for building user interfaces.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **TypeScript:** Enhancing code quality and developer productivity through static typing and improved tooling.
 
-## Expanding the ESLint configuration
+- **Apollo Client:** Seamlessly integrating GraphQL APIs with the application, allowing efficient data fetching and management.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Material-UI (MUI):** A popular and customizable React component library that ensures a consistent and visually appealing design across the application.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+Provide instructions on how to set up and run your React application locally.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Prerequisites
+
+React supported Noe version >= 15.5. 4+ .
+
+For example:
+- [Node.js](https://nodejs.org/) - Ensure you have Node.js installed. You can download it [here](https://nodejs.org/).
+
+### Installation
+
+Step-by-step guide on how to clone the repository and set up the project locally.
+
+1. Clone the repository:
+   ```shell
+   git clone https://github.com/SaidAbedi/th-pm.git
+   cd th-pm
+   cd veryable_takehome
