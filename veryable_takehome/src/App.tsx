@@ -2,14 +2,13 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { useQuery } from '@apollo/client';
-import { GET_LOCATIONS } from './services/getLocations';
+// import { useQuery } from '@apollo/client';
+// import { GET_LOCATIONS } from './services/getLocations';
 
 
 function App() {
   const [count, setCount] = useState(0)
-  const { data } = useQuery(GET_LOCATIONS);
-  console.log(data)
+  // const { data } = useQuery(GET_LOCATIONS);
 
 
   return (
