@@ -28,3 +28,6 @@ Step-by-step guide on how to clone the repository and set up the project locally
 1. Clone the repository:
    ```shell
    git clone https://github.com/SaidAbedi/th-pm.git
+
+2. Documentation on the Graph QL API [here](https://countries.trevorblades.com/graphql) or [here](https://studio.apollographql.com/public/countries/variant/current/explorer)
+   
