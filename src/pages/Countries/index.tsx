@@ -1,21 +1,21 @@
 // External Dependencies
 import { Typography } from '@mui/material'
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 // Internal Dependencies
 import { Country } from '../../gql/getCountries';
 import CountryCard from './CountryCard';
 
 interface CountriesProps{
-  data: Country[] | undefined;
+  data: {
+    countries: Country[] | undefined;
+  }
 }
 
 function Countries({ data }: CountriesProps) {
 
-  // console.log("IN COUNTRIES: ", data)
-
   const countriesToDisplay = useMemo(()=> {
-    return data?.map(country=>{
+    return data.countries?.map(country=>{
       return <CountryCard
                 key={country.name}
                 continent={country.continent}
@@ -27,7 +27,7 @@ function Countries({ data }: CountriesProps) {
                 states={country.states}
               />
     })
-  }, [data])
+  }, [data]);
 
   return (
     <div>

@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 // Component Definition
 function App() {
 
-  const { data: countries, loading, error } = useGetCountries();
+  const { data, loading, error } = useGetCountries();
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -36,7 +36,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/home' element={<Home loading={loading}/>} />
-        <Route path='/countries' element={<Countries data={countries?.countries}/>} />
+        <Route path='/countries' element={<Countries data={data}/>} />
         {/* <Route path='/game' element={<Game loading={loading}/>} /> */}
       </Routes>
     </div>
