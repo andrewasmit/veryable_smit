@@ -21,7 +21,7 @@ function App() {
   return (
     <div id="main-container">
       <Typography variant="h1">Smit's Take Home Assignment</Typography>
-      <Typography variant="h3">Veryable</Typography>
+      <Typography variant="h2">Veryable</Typography>
     </div>
   )
 }

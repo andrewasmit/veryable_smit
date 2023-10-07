@@ -9,5 +9,13 @@
 #main-container {
   background: url("./assets/photos/nick-fewings-BAZejJdZ57w-unsplash.jpg")
     no-repeat center center/cover;
+  /* opacity: ; */
   height: 100vh;
+}
+#main-container h1,
+#main-container h2 {
+  background: #333;
+  padding: 20px;
+  border-radius: 5px;
+  opacity: 0.8;
 }
