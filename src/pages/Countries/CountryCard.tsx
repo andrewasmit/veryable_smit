@@ -1,24 +1,15 @@
 // External Dependencies
-import { Button, Typography } from '@mui/material'
+import { useCallback, useState } from 'react'
+import { Button, Typography, Collapse } from '@mui/material'
 
 // Internal Dependencies
 import { Country } from '../../gql/getCountries'
 
 // Local Dependencies
 import './countries.css'
-import { useCallback } from 'react'
 
 
-// export interface Country {
-//   continent: Continent[];
-//   currency: string;
-//   emoji: string;
-//   emojiU: string;
-//   languages: Language[];
-//   name: string;
-//   states: State[];
-// }
-
+// Component Definition
 function CountryCard({
   continent,
   currency,
@@ -29,10 +20,11 @@ function CountryCard({
   states,
 }: Country ) {
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleClickLearnMore = useCallback(()=>{
-    console.log(currency, emoji, emojiU, languages, states)
-    console.log("Continent: ", continent)
-  }, []);
+    setIsOpen(!isOpen);
+  }, [isOpen]);
 
   return (
     <div className='country-card'>
@@ -40,6 +32,14 @@ function CountryCard({
       <Typography variant='h4'>{continent.name}</Typography>
       {/* <Typography variant='h5'>Learn More</Typography> */}
       <Button onClick={handleClickLearnMore}>Learn More!</Button>
+
+    { isOpen &&
+      <div>
+        <Typography variant='h5'>Currency: {currency}</Typography>
+        <Typography variant='h5'>Flag: {emoji}</Typography>
+      </div>
+    }
+
     </div>
   )
 }
