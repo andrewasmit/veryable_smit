@@ -36,7 +36,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/home' element={<Home loading={loading}/>} />
-        <Route path='/countries' element={<Countries data={countries}/>} />
+        <Route path='/countries' element={<Countries data={countries?.countries}/>} />
         {/* <Route path='/game' element={<Game loading={loading}/>} /> */}
       </Routes>
     </div>
