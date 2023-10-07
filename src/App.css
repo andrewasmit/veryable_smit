@@ -2,14 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #fff;
+  /* color: #fff; */
 }
 
-#main-container {
+/* #main-container {
   background: url("./assets/photos/nick-fewings-BAZejJdZ57w-unsplash.jpg")
     no-repeat center center/cover;
   height: 100vh;
-}
+} */
 
 /* #main-container h1,
 #main-container h3 {

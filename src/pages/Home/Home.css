@@ -1,0 +1,6 @@
+#welcome-page-container {
+  background: url("../../assets/photos/nick-fewings-BAZejJdZ57w-unsplash.jpg")
+    no-repeat center center/cover;
+  height: 100vh;
+  color: red;
+}

@@ -1,5 +1,10 @@
-.country-card {
+/* .country-card {
   text-align: center;
-  width: 350px;
+  width: 360px;
+  height: 400px;
   border: solid 2px red;
-}
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */

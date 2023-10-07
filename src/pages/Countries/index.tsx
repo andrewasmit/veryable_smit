@@ -1,6 +1,6 @@
 // External Dependencies
-import { Typography } from '@mui/material'
-import React, { useMemo } from 'react';
+import { Grid, Typography } from '@mui/material'
+import { useMemo } from 'react';
 
 // Internal Dependencies
 import { Country } from '../../gql/getCountries';
@@ -16,7 +16,8 @@ function Countries({ data }: CountriesProps) {
 
   const countriesToDisplay = useMemo(()=> {
     return data.countries?.map(country=>{
-      return <CountryCard
+      return <Grid item xs={12} sm={6} lg={4} xl={3} >
+              <CountryCard
                 key={country.name}
                 continent={country.continent}
                 currency={country.currency}
@@ -26,6 +27,7 @@ function Countries({ data }: CountriesProps) {
                 name={country.name}
                 states={country.states}
               />
+            </Grid>
     })
   }, [data]);
 
@@ -33,7 +35,9 @@ function Countries({ data }: CountriesProps) {
     <div>
       <Typography variant='h2'>This is the countries page</Typography>
 
-      { countriesToDisplay }
+      <Grid container spacing={2}>
+        { countriesToDisplay }
+      </Grid>
     </div>
   )
 }
