@@ -1,5 +1,5 @@
 // External Dependencies
-import { gql, useQuery } from "@apollo/client";
+import { QueryResult, gql, useQuery } from "@apollo/client";
 
 interface Continent {
   name: string;
@@ -46,6 +46,6 @@ const GET_COUNTRIES = gql`
   }
 `;
 
-export const useGetCountries = () => {
+export const useGetCountries = (): QueryResult<Country> => {
   return useQuery(GET_COUNTRIES);
 };
