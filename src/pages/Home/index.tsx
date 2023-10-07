@@ -1,11 +1,11 @@
 // External Dependencies
 import { Typography } from "@mui/material"
 
-type WelcomeParams = {
+type HomeParams = {
   loading: boolean;
 }
 
-function Welcome({ loading }: WelcomeParams) {
+function Home({ loading }: HomeParams) {
 
 
   if(loading){ 
@@ -20,4 +20,4 @@ function Welcome({ loading }: WelcomeParams) {
   )
 }
 
-export default Welcome
+export default Home
