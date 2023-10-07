@@ -1,6 +1,9 @@
 // External Dependencies
 import { Typography } from "@mui/material"
 
+// Local Dependencies
+import './Home.css'
+
 type HomeParams = {
   loading: boolean;
 }

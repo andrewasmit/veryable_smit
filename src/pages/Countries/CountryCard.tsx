@@ -29,13 +29,14 @@ function CountryCard({
 
   const [isOpen, setIsOpen] = useState(false);
 
+  // console.log("IN COUNTRY CARD: ", states)
   const handleClickLearnMore = useCallback(()=>{
     setIsOpen(!isOpen);
   }, [isOpen]);
 
   return (
     <div className='country-card'>
-    <Box onClick={handleClickLearnMore} component="div" >
+    <Box component="div" >
       <Card elevation= {4} sx={{ maxWidth: 450, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h1'>{emoji}</Typography>
         <Typography variant='h5'>{name}</Typography>
@@ -45,18 +46,20 @@ function CountryCard({
             size="small" 
             onClick={handleClickLearnMore}
           >
-            Learn More!
+            Show Details
           </Button>
         </CardActions>
 
-        <Popup isOpen={isOpen} handleClose={handleClickLearnMore} />
-        
-      {/* { isOpen &&
-        <div>
-          <Typography variant='h5'>Currency: {currency}</Typography>
-          <Typography variant='h5'>Flag: {emoji}</Typography>
-        </div>
-      } */}
+        <Popup 
+          isOpen={isOpen} 
+          handleClose={handleClickLearnMore}
+          currency={currency}
+          continent={continent.name}
+          languages={languages}
+          name={name}
+          states={states}
+          emoji={emoji}
+        />
 
       </Card>
     </Box>

@@ -1,17 +1,17 @@
 // External Dependencies
 import { QueryResult, gql, useQuery } from "@apollo/client";
 
-interface Continent {
+export interface Continent {
   name: string;
   __typename: string;
 }
 
-interface Language {
+export interface Language {
   native: string;
   __typename: string;
 }
 
-interface State {
+export interface State {
   name: string;
   __typename: string;
 }
