@@ -7,9 +7,10 @@ import { Country } from '../../gql/getCountries';
 interface CountriesProps{
   data: Country[] | undefined;
 }
-function Countries({ data }: CountriesProps | undefined) {
 
+function Countries({ data }: CountriesProps) {
 
+  console.log("In CONTRIES: ",  data)
 
   return (
     <div>
