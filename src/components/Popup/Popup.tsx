@@ -46,7 +46,14 @@ function Popup({
     }) 
   }, [languages]);
 
-  // console.log(`POPUP: ${name}`, languages)
+  const cardStles = { 
+    width: 700, 
+    padding:8, 
+    margin:'auto',
+    maxWidth: 800,
+    // display: 'inline-block',
+    textAlign: 'center'
+}
 
   return (
     <div>
@@ -54,7 +61,7 @@ function Popup({
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={isOpen}
       >
-        <Card elevation= {4} sx={{ maxWidth: 450, padding:4, margin:'auto' }}>
+        <Card elevation= {4} sx={cardStles}>
           <Typography variant="h3" >{name}</Typography>
           <Typography variant="h2" >{emoji}</Typography>
           <Typography variant="h6" ><strong>Continent:</strong> {continent}</Typography>
@@ -66,7 +73,7 @@ function Popup({
           <Typography variant="h6" ><strong>States:</strong></Typography>
           {statesToDisplay}
 
-          <Button onClick={handleClose}>Close</Button>
+          <Button size="large" variant="contained" onClick={handleClose}>Close</Button>
         </Card>
       </Backdrop>
     </div>
