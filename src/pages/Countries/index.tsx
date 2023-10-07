@@ -1,7 +1,16 @@
 // External Dependencies
 import { Typography } from '@mui/material'
 
-function Countries() {
+// Internal Dependencies
+import { Country } from '../../gql/getCountries';
+
+interface CountriesProps{
+  data: Country[] | undefined;
+}
+function Countries({ data }: CountriesProps | undefined) {
+
+
+
   return (
     <div>
       <Typography variant='h2'>This is the countries page</Typography>
@@ -9,4 +18,4 @@ function Countries() {
   )
 }
 
-export default Countries
+export default Countries;

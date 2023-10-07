@@ -16,7 +16,6 @@ import './App.css'
 function App() {
 
   const { data: countries, loading, error } = useGetCountries();
-  console.log("COUNTRIES: ", countries)
 
   if(loading){ 
     return <Typography variant='h4'>Loading...</Typography>
