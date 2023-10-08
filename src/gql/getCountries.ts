@@ -48,7 +48,6 @@ const GET_COUNTRIES = gql`
   }
 `;
 
-// export const useGetCountries = (): QueryResult<Country[]> => {
 export const useGetCountries = () => {
   return useQuery(GET_COUNTRIES);
 };
