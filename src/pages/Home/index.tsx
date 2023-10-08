@@ -1,8 +1,6 @@
 // External Dependencies
-import { Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
-// Local Dependencies
-import './Home.css'
 
 type HomeParams = {
   loading: boolean;
@@ -15,12 +13,19 @@ function Home({ loading }: HomeParams) {
   }
   
   return (
-    <div id="welcome-page-container">
-      <Typography variant="h1">GlobeGuru</Typography>
-      <Typography variant="h3">Learn more about our world</Typography>
-
-      <img src="/public" alt="main-logo" />
-    </div>
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',}} >
+        <Box 
+          component="img"
+          sx={{
+            opacity: 0.9,
+            height: 500,
+            width: 500,
+            margin: 15
+          }}
+          alt="main-logo"
+          src="/logo/logoColor.png"
+        />         
+        </Box>
   )
 }
 

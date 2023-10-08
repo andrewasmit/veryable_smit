@@ -1,6 +1,6 @@
 //External Dependencies
 import { useState } from "react";
-import { Avatar, Box, Tab, Tabs, Typography } from "@mui/material"
+import { Box, Tab, Tabs, Typography } from "@mui/material"
 
 // Local Dependencies
 import './navbar.css'
@@ -32,23 +32,16 @@ function Navbar() {
     <div id="navbar-container">
       {/* <Typography variant="h4" >This is the Navbar</Typography> */}
 
-      <img 
-        src={'../../assets/logo/logo-colo.png'}
-        alt="main-logo"
-      />
-        {/* component="img"
-        sx={{
-          height: 233,
-          width: 350,
-          maxHeight: { xs: 233, md: 167 },
-          maxWidth: { xs: 350, md: 250 },
-        }}
-        alt="main-logo"
-        src="../../assets/logo/logo-color.png"
-      /> */}
-
-      <Avatar alt="main-logo" src={'../../public/logo/logo-color.png'} />
-
+      <Box 
+          component="img"
+          sx={{
+            height: 'auto',
+            width: 200,
+          }}
+          alt="navbar-logo"
+          src="/logo/logo-secondary.png"
+        />  
+        
       <Box sx={{ width: '100%' }}>
         <Tabs 
           value={pageIdx} 
