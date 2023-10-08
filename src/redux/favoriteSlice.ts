@@ -1,47 +1,38 @@
+// External Dependencies
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+
+// Internal Dependencies
+import { Country } from "../gql/getCountries";
+
+// Local Dependencies
 import type { RootState } from "./store";
 
-interface UserState {
-  username: string;
-  emailAddress: string;
-  organizationId: number | undefined;
-  isAdmin: boolean | undefined;
-}
-
-export interface UserResponse {
-  username: string;
-  email_address: string;
-  organization_id: number | undefined;
-  is_admin: boolean | undefined;
-}
-
-const initialState: { currentUser: UserState | null } = {
-  currentUser: null,
+const initialState: { countries: Country[] } = {
+  countries: [],
 };
 
-export const userSlice = createSlice({
-  name: "user",
+export const favoriteSlice = createSlice({
+  name: "favorite",
   initialState,
   reducers: {
-    signIn: (state, action: PayloadAction<UserResponse>) => {
-      console.log(`REDUX: ${action.payload.username} is now signed in.`);
-      state.currentUser = <UserState>{
-        username: action.payload.username,
-        emailAddress: action.payload.email_address,
-        organizationId: action.payload.organization_id,
-        isAdmin: action.payload.is_admin,
-      };
+    addToFavorites: (state, action: PayloadAction<Country>) => {
+      console.log(`REDUX: ${action.payload.name} is added to Favorites.`);
+      state.countries?.push(action.payload);
     },
-    signOut: (state) => {
-      console.log(`REDUX: ${state.currentUser?.username} has signed out.`);
-      state.currentUser = null;
+    removeFromFavorites: (state, action: PayloadAction<Country>) => {
+      console.log(
+        `REDUX: ${action.payload.name} has been removed from Favorites.`
+      );
+      const oldState = [...state.countries];
+      oldState.filter((country) => country.name !== action.payload.name);
+      state.countries = oldState;
     },
   },
 });
 
-export const { signIn, signOut } = userSlice.actions;
+export const { addToFavorites, removeFromFavorites } = favoriteSlice.actions;
 
-export const selectUser = (state: RootState) => state.user;
+export const selectUser = (state: RootState) => state.favorites;
 
-export default userSlice.reducer;
+export default favoriteSlice.reducer;
