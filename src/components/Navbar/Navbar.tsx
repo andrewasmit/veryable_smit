@@ -30,7 +30,6 @@ function Navbar() {
 
   return (
     <div id="navbar-container">
-      {/* <Typography variant="h4" >This is the Navbar</Typography> */}
 
       <Box 
           component="img"
@@ -48,7 +47,7 @@ function Navbar() {
           onChange={handleChange} 
           aria-label="navbar" 
           centered
-          textColor="secondary" 
+          textColor="inherit" 
           indicatorColor="secondary"
         >
           <Tab label="Home" {...a11yProps(0)} />

@@ -20,7 +20,7 @@ function Home({ loading }: HomeParams) {
             opacity: 0.9,
             height: 500,
             width: 500,
-            margin: 15
+            margin: 10
           }}
           alt="main-logo"
           src="/logo/logoColor.png"
