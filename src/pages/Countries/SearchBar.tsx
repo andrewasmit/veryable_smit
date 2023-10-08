@@ -36,7 +36,7 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
   },[data, search]);
 
   const handleResetFilter = useCallback(()=>{
-    handleSearchFilter(data)
+    handleSearchFilter(allData)
     setSearch('');
   },[]);
 
@@ -53,4 +53,4 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
   )
 }
 
-export default SearchBar
+export default SearchBar;

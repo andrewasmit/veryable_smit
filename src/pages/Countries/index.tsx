@@ -34,9 +34,8 @@ function Countries({ data }: CountriesProps) {
                 states={country.states}
               />
             </Grid>
-    })
+    })    
   }, [searchedCountries]);
-
 
   return (
     <div>
@@ -47,9 +46,15 @@ function Countries({ data }: CountriesProps) {
         handleSearchFilter={setSearchedCountries} 
       />
 
-      <Grid container spacing={2}>
-        { countriesToDisplay }
-      </Grid>
+      {countriesToDisplay &&
+        <Grid container spacing={2}>
+          { countriesToDisplay }
+        </Grid> 
+      }
+
+      {countriesToDisplay?.length === 0 && 
+        <Typography variant='h5' sx={{ textAlign: 'center', marginTop: 5, padding: 5 }}>No Results Found</Typography> 
+      }
     </div>
   )
 }
