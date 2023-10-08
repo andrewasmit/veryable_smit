@@ -6,7 +6,7 @@ import {
   useMemo, 
   useState 
 } from "react";
-import { Button, TextField } from "@mui/material"
+import { Box, Button, TextField } from "@mui/material"
 
 // Internal Dependencies
 import { Country } from "../../gql/getCountries";
@@ -41,15 +41,16 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
   },[]);
 
   return (
-    <>
+    <Box sx={{ maxWidth: '800px', margin: 'auto', display: 'flex' }}>
       <TextField 
         label="Search for a Country" 
         value={search} 
         onChange={handleSearchText}
+        sx={{ width: '400px' }}
       />
       <Button type="submit" onClick={handleFilterData} variant="contained" >Search</Button>
       <Button onClick={handleResetFilter} variant="outlined" >Clear</Button>
-    </>
+    </Box>
   )
 }
 
