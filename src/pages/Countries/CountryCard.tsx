@@ -53,16 +53,17 @@ function CountryCard({
 
   return (
     <Box component="div" sx={{ padding: 2 }}>
-      <Card elevation= {3} sx={{ maxWidth: 450, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
+      <Card elevation= {3} sx={{ textAlign: 'center', maxWidth: 450, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h1'>{emoji}</Typography>
         <Typography variant='h5'>{name}</Typography>
         <Typography variant='h6'>{continent.name}</Typography>
-        <CardActions sx={{ display: 'flex', alignContent: 'space-between' }}>
+        <CardActions sx={{ display: 'flex', justifyContent:'center', alignContent: 'space-between' }}>
           <Button 
             size="small" 
             onClick={handleOpen}
             variant='contained'
             color='primary'
+            sx={{ marginRight: 3 }}
           >
             Show Details
           </Button>
@@ -72,6 +73,7 @@ function CountryCard({
             size='small'
             color= {isFavorite ? 'error' : 'info'}
             aria-label="favorite"
+            sx={{ padding: 2 }}
           >
             {isFavorite ? 
               <FavoriteIcon /> :
