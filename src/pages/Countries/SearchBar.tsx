@@ -67,8 +67,23 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
         sx={{ width: '400px', background: '#fff' }}
       />
       
-      <Button type="submit" onClick={handleFilterData} variant="contained" color="primary" >Search</Button>
-      <Button onClick={handleResetFilter} variant="contained" color="secondary" >Clear</Button>
+      <Button 
+        type="submit" 
+        onClick={handleFilterData} 
+        variant="contained" 
+        color="primary" 
+        sx={{ marginLeft: 1 }}
+      >
+        Search
+      </Button>
+      <Button 
+        onClick={handleResetFilter} 
+        variant="contained" 
+        color="secondary" 
+        sx={{ marginLeft: 1 }}
+      >
+        Clear
+      </Button>
 
       <FormGroup>
         <FormControlLabel control={<Checkbox checked={checked} color="primary" onChange={handleCheck} sx={{ '& .MuiSvgIcon-root': { fontSize: 40 }, marginLeft: '20px' }} />} label="Show My Favorites" />
