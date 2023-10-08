@@ -1,5 +1,4 @@
 // External Dependencies
-import React from "react"
 import { Typography } from "@mui/material"
 
 // Local Dependencies
@@ -17,8 +16,8 @@ function Home({ loading }: HomeParams) {
   
   return (
     <div id="welcome-page-container">
-      <Typography variant="h1">This is the Welcome Page</Typography>
-      <Typography variant="h3">This is Andrew's Smit's takehome assignment for Veryable</Typography>
+      <Typography variant="h1">GlobeGuru</Typography>
+      <Typography variant="h3">Learn more about our world</Typography>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 //External Dependencies
 import { useState } from "react";
-import { Box, Tab, Tabs, Typography } from "@mui/material"
+import { Avatar, Box, Tab, Tabs, Typography } from "@mui/material"
 
 // Local Dependencies
 import './navbar.css'
@@ -46,6 +46,8 @@ function Navbar() {
         alt="main-logo"
         src="../../assets/logo/logo-color.png"
       /> */}
+
+      <Avatar alt="main-logo" src={'../../public/logo/logo-color.png'} />
 
       <Box sx={{ width: '100%' }}>
         <Tabs 
