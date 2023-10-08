@@ -1,4 +1,5 @@
 // External Dependencies
+import React from "react"
 import { Typography } from "@mui/material"
 
 // Local Dependencies

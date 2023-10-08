@@ -5,7 +5,7 @@
 }
 
 #main-container {
-  background: url("./assets/photos/nick-fewings-BAZejJdZ57w-unsplash.jpg")
+  background: url("./public/photos/nick-fewings-BAZejJdZ57w-unsplash.jpg")
     no-repeat center center/cover;
   height: 100vh;
 }

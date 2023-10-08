@@ -48,15 +48,12 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
   const handleCheck = useCallback(()=>{
     if(!checked){
       handleSearchFilter(favoriteCountries);
-      // setChecked(true);
     } 
 
     if(checked){
       handleSearchFilter(allData);
     }
-    // else
-    // setChecked(false);
-    // handleSearchFilter(allData);
+
     setChecked(!checked)
   },[checked, favoriteCountries]);
 
@@ -66,13 +63,15 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
         label="Search for a Country" 
         value={search} 
         onChange={handleSearchText}
+        color="primary"
         sx={{ width: '400px', background: '#fff' }}
       />
-      <Button type="submit" onClick={handleFilterData} variant="contained" >Search</Button>
-      <Button onClick={handleResetFilter} variant="outlined" >Clear</Button>
+      
+      <Button type="submit" onClick={handleFilterData} variant="contained" color="primary" >Search</Button>
+      <Button onClick={handleResetFilter} variant="contained" color="secondary" >Clear</Button>
 
       <FormGroup>
-        <FormControlLabel control={<Checkbox checked={checked} onChange={handleCheck} sx={{ '& .MuiSvgIcon-root': { fontSize: 40 }, marginLeft: '20px' }} />} label="Show My Favorites" />
+        <FormControlLabel control={<Checkbox checked={checked} color="primary" onChange={handleCheck} sx={{ '& .MuiSvgIcon-root': { fontSize: 40 }, marginLeft: '20px' }} />} label="Show My Favorites" />
       </FormGroup>
     </Box>
   )

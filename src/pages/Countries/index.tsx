@@ -37,10 +37,9 @@ function Countries({ data }: CountriesProps) {
     })    
   }, [searchedCountries]);
 
-  // console.log("IN INDEX. Searched Countries: ", searchedCountries)
 
   return (
-    <Box sx={{ backgroundColor: '#333366', color: '#ffff33', opacity: '0.95' }}>
+    <Box sx={{ color: '#333666', backgroundColor: '#f4f4f4', opacity: '0.99' }}>
       <Typography variant='h3' sx={{ padding: 4, textAlign: 'center', fontSize: '50px' }}>
         Search the Globe for info about other  countries!
       </Typography>
