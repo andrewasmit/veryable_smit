@@ -21,7 +21,7 @@ export interface State {
 }
 
 export interface Country {
-  continent: Continent[];
+  continent: Continent;
   currency: string;
   emoji: string;
   languages: Language[];

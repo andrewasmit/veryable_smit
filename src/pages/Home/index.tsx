@@ -1,7 +1,6 @@
 // External Dependencies
 import { Box, Typography } from "@mui/material"
 
-
 type HomeParams = {
   loading: boolean;
 }
