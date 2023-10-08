@@ -32,7 +32,7 @@ function CountryCard({
 
   return (
     <div className='country-card'>
-    <Box component="div" >
+    <Box component="div" sx={{ padding: 2 }}>
       <Card elevation= {3} sx={{ maxWidth: 450, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h1'>{emoji}</Typography>
         <Typography variant='h5'>{name}</Typography>
