@@ -14,7 +14,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 // Internal Dependencies
 import { Country } from '../../gql/getCountries'
 import Popup from '../../components/Popup/Popup';
-
+import { useIsOpen } from '../../utils/useIsOpen';
 
 // Component Definition
 function CountryCard({
@@ -26,12 +26,12 @@ function CountryCard({
   states,
 }: Country ) {
 
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, handleOpen, handleClose } = useIsOpen();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClickLearnMore = useCallback(()=>{
-    setIsOpen(!isOpen);
-  }, [isOpen]);
+    handleOpen();
+  }, []);
 
   const handleClickFavorite = useCallback(()=>{
     setIsFavorite(!isFavorite);
@@ -66,7 +66,7 @@ function CountryCard({
 
         <Popup 
           isOpen={isOpen} 
-          handleClose={handleClickLearnMore}
+          handleClose={handleClose}
           currency={currency}
           continent={continent.name}
           languages={languages}
