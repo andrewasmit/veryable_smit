@@ -5,8 +5,11 @@ import {
   Typography, 
   Card, 
   CardActions, 
-  Box
+  Box,
+  Fab
 } from '@mui/material'
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 // Internal Dependencies
 import { Country } from '../../gql/getCountries'
@@ -24,10 +27,15 @@ function CountryCard({
 }: Country ) {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClickLearnMore = useCallback(()=>{
     setIsOpen(!isOpen);
   }, [isOpen]);
+
+  const handleClickFavorite = useCallback(()=>{
+    setIsFavorite(!isFavorite);
+  }, [isFavorite]);
 
   return (
     <Box component="div" sx={{ padding: 2 }}>
@@ -35,13 +43,25 @@ function CountryCard({
         <Typography variant='h1'>{emoji}</Typography>
         <Typography variant='h5'>{name}</Typography>
         <Typography variant='h6'>{continent.name}</Typography>
-        <CardActions>
+        <CardActions sx={{ display: 'flex', alignContent: 'space-between' }}>
           <Button 
             size="small" 
             onClick={handleClickLearnMore}
           >
             Show Details
           </Button>
+
+          <Fab 
+            onClick={handleClickFavorite} 
+            size='small'
+            color= {isFavorite ? 'error' : 'info'}
+            aria-label="favorite"
+          >
+            {isFavorite ? 
+              <FavoriteIcon /> :
+              <FavoriteBorderIcon />
+            }
+          </Fab>
         </CardActions>
 
         <Popup 
