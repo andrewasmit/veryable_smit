@@ -41,12 +41,12 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
   },[]);
 
   return (
-    <Box sx={{ maxWidth: '800px', margin: 'auto', display: 'flex', paddingBottom: 5 }}>
+    <Box sx={{ maxWidth: '800px', margin: 'auto', display: 'flex', paddingBottom: 2 }}>
       <TextField 
         label="Search for a Country" 
         value={search} 
         onChange={handleSearchText}
-        sx={{ width: '400px' }}
+        sx={{ width: '400px', background: '#fff' }}
       />
       <Button type="submit" onClick={handleFilterData} variant="contained" >Search</Button>
       <Button onClick={handleResetFilter} variant="outlined" >Clear</Button>

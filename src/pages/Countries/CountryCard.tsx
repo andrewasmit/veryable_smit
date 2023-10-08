@@ -25,13 +25,11 @@ function CountryCard({
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // console.log("IN COUNTRY CARD: ", states)
   const handleClickLearnMore = useCallback(()=>{
     setIsOpen(!isOpen);
   }, [isOpen]);
 
   return (
-    <div className='country-card'>
     <Box component="div" sx={{ padding: 2 }}>
       <Card elevation= {3} sx={{ maxWidth: 450, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h1'>{emoji}</Typography>
@@ -59,7 +57,6 @@ function CountryCard({
 
       </Card>
     </Box>
-    </div>
   )
 }
 

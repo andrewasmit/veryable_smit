@@ -1,5 +1,5 @@
 // External Dependencies
-import { Grid, Typography } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import { useMemo, useState } from 'react';
 
 // Internal Dependencies
@@ -38,8 +38,10 @@ function Countries({ data }: CountriesProps) {
   }, [searchedCountries]);
 
   return (
-    <div>
-      <Typography variant='h2'>This is the countries page</Typography>
+    <Box sx={{ backgroundColor: '#f4f4f4', color: '#333' }}>
+      <Typography variant='h3' sx={{ padding: 4, textAlign: 'center', fontSize: '50px' }}>
+        Search the Globe for info about other  countries!
+      </Typography>
 
       <SearchBar 
         data={searchedCountries} 
@@ -55,7 +57,7 @@ function Countries({ data }: CountriesProps) {
       {countriesToDisplay?.length === 0 && 
         <Typography variant='h5' sx={{ textAlign: 'center', marginTop: 5, padding: 5 }}>No Results Found</Typography> 
       }
-    </div>
+    </Box >
   )
 }
 
