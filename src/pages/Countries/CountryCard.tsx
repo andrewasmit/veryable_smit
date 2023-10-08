@@ -34,10 +34,6 @@ function CountryCard({
   const { isOpen, handleOpen, handleClose } = useIsOpen();
   const [isFavorite, setIsFavorite] = useState(favoriteCountries.some(country=>country.name === name));
 
-  const handleClickLearnMore = useCallback(()=>{
-    handleOpen();
-  }, []);
-
   const handleClickFavorite = useCallback(()=>{
     if (!isFavorite){
       const newFavorite: Country = {
@@ -64,8 +60,8 @@ function CountryCard({
         <CardActions sx={{ display: 'flex', alignContent: 'space-between' }}>
           <Button 
             size="small" 
-            onClick={handleClickLearnMore}
-            variant='outlined'
+            onClick={handleOpen}
+            variant='contained'
             color='primary'
           >
             Show Details
