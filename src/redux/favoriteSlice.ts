@@ -20,13 +20,13 @@ export const favoriteSlice = createSlice({
       console.log(`REDUX: ${action.payload.name} is added to Favorites.`);
       state.countries?.push(action.payload);
     },
-    removeFromFavorites: (state, action: PayloadAction<Country>) => {
-      console.log(
-        `REDUX: ${action.payload.name} has been removed from Favorites.`
-      );
+    removeFromFavorites: (state, action: PayloadAction<string>) => {
+      console.log(`REDUX: ${action.payload} has been removed from Favorites.`);
       const oldState = [...state.countries];
-      oldState.filter((country) => country.name !== action.payload.name);
-      state.countries = oldState;
+      const newState = oldState.filter(
+        (country) => country.name !== action.payload
+      );
+      state.countries = newState;
     },
   },
 });
