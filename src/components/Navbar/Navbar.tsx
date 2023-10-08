@@ -1,12 +1,10 @@
 //External Dependencies
 import { useState } from "react";
-import { Box, Tab, Tabs, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom";
+import { Box, Tab, Tabs } from "@mui/material"
 
 // Local Dependencies
-import './navbar.css'
-import { useNavigate } from "react-router-dom";
 import { handleClickNavigationTab } from "../../utils/navigation-helpers";
-
 
 //Local Typings
 const a11yProps = (index: number) => {
@@ -28,9 +26,19 @@ function Navbar() {
     navigate(`/${url}`)
   };
 
-  return (
-    <div id="navbar-container">
+  const navbarContainerStyles = {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center', 
+    boxSizing: 'border-box',
+    color: '#fff',
+    background: '#333366',
+    opacity: 0.9 
+  }
 
+  return (
+    <Box sx={navbarContainerStyles}  >
       <Box 
           component="img"
           sx={{
@@ -55,7 +63,7 @@ function Navbar() {
           <Tab label="Play!" {...a11yProps(2)} />
         </Tabs>
       </Box>
-    </div>
+    </Box>
   )
 }
 
