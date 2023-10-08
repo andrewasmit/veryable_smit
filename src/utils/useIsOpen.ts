@@ -1,3 +1,4 @@
+// External Dependencies
 import { useCallback, useMemo, useState } from "react";
 
 export const useIsOpen = (initialState = false) => {
