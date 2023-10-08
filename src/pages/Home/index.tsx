@@ -18,6 +18,8 @@ function Home({ loading }: HomeParams) {
     <div id="welcome-page-container">
       <Typography variant="h1">GlobeGuru</Typography>
       <Typography variant="h3">Learn more about our world</Typography>
+
+      <img src="/public" alt="main-logo" />
     </div>
   )
 }
