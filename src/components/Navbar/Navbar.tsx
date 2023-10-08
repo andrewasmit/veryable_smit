@@ -38,7 +38,6 @@ function Navbar() {
           value={pageIdx} 
           onChange={handleChange} 
           aria-label="navbar" 
-          // variant="fullWidth"
           centered
           textColor="secondary" 
           indicatorColor="secondary"

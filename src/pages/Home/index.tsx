@@ -10,9 +10,8 @@ type HomeParams = {
 
 function Home({ loading }: HomeParams) {
 
-
   if(loading){ 
-    return <Typography variant='h4'>Loading...</Typography>
+    return <Typography variant='h4' sx={{ textAlign: 'center'}}>Loading...</Typography>
   }
   
   return (
