@@ -37,6 +37,8 @@ function Countries({ data }: CountriesProps) {
     })    
   }, [searchedCountries]);
 
+  // console.log("IN INDEX. Searched Countries: ", searchedCountries)
+
   return (
     <Box sx={{ backgroundColor: '#f4f4f4', color: '#333' }}>
       <Typography variant='h3' sx={{ padding: 4, textAlign: 'center', fontSize: '50px' }}>

@@ -15,7 +15,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Country } from '../../gql/getCountries'
 import Popup from '../../components/Popup/Popup';
 import { useIsOpen } from '../../utils/useIsOpen';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addToFavorites, removeFromFavorites } from '../../redux/favoriteSlice';
 
 // Component Definition
@@ -28,22 +28,15 @@ function CountryCard({
   states,
 }: Country ) {
 
-  const { isOpen, handleOpen, handleClose } = useIsOpen();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { countries: favoriteCountries } = useAppSelector(state=>state.favorites)
   const dispatch = useAppDispatch();
+
+  const { isOpen, handleOpen, handleClose } = useIsOpen();
+  const [isFavorite, setIsFavorite] = useState(favoriteCountries.some(country=>country.name === name));
 
   const handleClickLearnMore = useCallback(()=>{
     handleOpen();
   }, []);
-  
-  // export interface Country {
-  //   continent: Continent[];
-  //   currency: string;
-  //   emoji: string;
-  //   languages: Language[];
-  //   name: string;
-  //   states: State[];
-  // }
 
   const handleClickFavorite = useCallback(()=>{
     if (!isFavorite){
