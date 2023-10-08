@@ -55,15 +55,15 @@ function Popup({
       return <Typography variant="body1">-This country has 0 states.</Typography>
     }
 
-    return states.map(state=>{
-      return <Typography variant="body1">- {state.name}</Typography>
+    return states.map((state, idx)=>{
+      return <Typography variant="body1" key={`${idx}-${state.name}`} >- {state.name}</Typography>
     })
   }, [states])
 
 
   const languagesToDisplay = useMemo(()=>{
-    return languages.map(language=>{
-      return <Typography variant="body1">- {language.native}</Typography>
+    return languages.map((language, idx)=>{
+      return <Typography variant="body1" key={`${idx}-${language.native}`} >- {language.native}</Typography>
     }) 
   }, [languages]);
 

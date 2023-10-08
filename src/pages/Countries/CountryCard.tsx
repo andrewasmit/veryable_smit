@@ -10,9 +10,6 @@ import {
 
 // Internal Dependencies
 import { Country } from '../../gql/getCountries'
-
-// Local Dependencies
-import './countries.css'
 import Popup from '../../components/Popup/Popup';
 
 
@@ -21,7 +18,6 @@ function CountryCard({
   continent,
   currency,
   emoji,
-  emojiU,
   languages,
   name,
   states,
@@ -37,7 +33,7 @@ function CountryCard({
   return (
     <div className='country-card'>
     <Box component="div" >
-      <Card elevation= {4} sx={{ maxWidth: 450, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
+      <Card elevation= {3} sx={{ maxWidth: 450, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h1'>{emoji}</Typography>
         <Typography variant='h5'>{name}</Typography>
         <Typography variant='h6'>{continent.name}</Typography>

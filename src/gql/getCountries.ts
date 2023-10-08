@@ -1,5 +1,9 @@
 // External Dependencies
-import { QueryResult, gql, useQuery } from "@apollo/client";
+import {
+  // QueryResult,
+  gql,
+  useQuery,
+} from "@apollo/client";
 
 export interface Continent {
   name: string;
@@ -20,7 +24,6 @@ export interface Country {
   continent: Continent[];
   currency: string;
   emoji: string;
-  emojiU: string;
   languages: Language[];
   name: string;
   states: State[];
@@ -41,7 +44,6 @@ const GET_COUNTRIES = gql`
       }
       name
       emoji
-      emojiU
     }
   }
 `;

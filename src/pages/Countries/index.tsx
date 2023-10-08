@@ -5,8 +5,9 @@ import { useMemo } from 'react';
 // Internal Dependencies
 import { Country } from '../../gql/getCountries';
 import CountryCard from './CountryCard';
+import SearchBar from './SearchBar';
 
-interface CountriesProps{
+export interface CountriesProps{
   data: {
     countries: Country[] | undefined;
   }
@@ -15,14 +16,12 @@ interface CountriesProps{
 function Countries({ data }: CountriesProps) {
 
   const countriesToDisplay = useMemo(()=> {
-    return data.countries?.map(country=>{
-      return <Grid item xs={12} sm={6} lg={4} xl={3} >
+    return data.countries?.map((country, idx)=>{
+      return <Grid item xs={12} sm={6} lg={4} xl={3} key={`${country.name}-${idx}`} >
               <CountryCard
-                key={country.name}
                 continent={country.continent}
                 currency={country.currency}
                 emoji={country.emoji}
-                emojiU={country.emojiU}
                 languages={country.languages}
                 name={country.name}
                 states={country.states}
@@ -31,9 +30,12 @@ function Countries({ data }: CountriesProps) {
     })
   }, [data]);
 
+  
   return (
     <div>
       <Typography variant='h2'>This is the countries page</Typography>
+
+      <SearchBar data={data} />
 
       <Grid container spacing={2}>
         { countriesToDisplay }
