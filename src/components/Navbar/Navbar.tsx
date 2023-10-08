@@ -28,10 +28,24 @@ function Navbar() {
     navigate(`/${url}`)
   };
 
+  // const navbarStyle = { display: 'flex', justify-content: 'center', align-items: 'center', box-sizing: 'border-box', color: '#fff', background: ' #333366', padding: '20px', opacity: '0.9' }
+
 
   return (
     <div id="navbar-container">
       <Typography variant="h4" >This is the Navbar</Typography>
+
+      <Box
+        component="img"
+        sx={{
+          height: 233,
+          width: 350,
+          maxHeight: { xs: 233, md: 167 },
+          maxWidth: { xs: 350, md: 250 },
+        }}
+        alt="main-logo"
+        src="../../assets/logo/logo-color.png"
+      />
 
       <Box sx={{ width: '100%', borderBottom: 1, borderColor: 'divider' }}>
         <Tabs 

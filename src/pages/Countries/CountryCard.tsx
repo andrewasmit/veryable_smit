@@ -65,6 +65,8 @@ function CountryCard({
           <Button 
             size="small" 
             onClick={handleClickLearnMore}
+            variant='outlined'
+            color='primary'
           >
             Show Details
           </Button>
