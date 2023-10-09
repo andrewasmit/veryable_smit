@@ -1,6 +1,6 @@
 // External Dependencies
 import { Box, Grid, Pagination, Typography } from '@mui/material'
-import { useMemo, useState } from 'react';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 // Internal Dependencies
 import { Country } from '../../gql/getCountries';
@@ -22,15 +22,27 @@ function Countries({ data }: CountriesProps) {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setpostsPerPage] = useState(8);
-  // const [currentCountries, setCurrentCountries] = useState(data.countries);
+  const [currentCountries, setCurrentCountries] = useState(data.countries);
 
-  const lastIdx = currentPage * postsPerPage;
-  const firstIdx = lastIdx - postsPerPage;
+  const lastIdx = useMemo(()=>{
+    return currentPage * postsPerPage;
+  },[currentPage, postsPerPage]);
+
+  const firstIdx = useMemo(()=>{
+    return lastIdx - postsPerPage;;
+  },[lastIdx, postsPerPage]);
+
+  console.log("CURRENT PAGE: ", currentPage)
+  // const firstIdx = lastIdx - postsPerPage;
   
-  const [currentCountries, setCurrentCountries] = useState(data.countries?.slice(firstIdx, lastIdx));
+  // const [currentCountries, setCurrentCountries] = useState(data.countries?.slice(firstIdx, lastIdx));
+
+  const paginatedCountries = useMemo(()=>{
+    return currentCountries?.slice(firstIdx, lastIdx)
+  }, [currentPage, currentCountries, postsPerPage, firstIdx, lastIdx])
 
   const countriesToDisplay = useMemo(()=> {
-    return currentCountries?.map((country, idx)=>{
+    return paginatedCountries?.map((country, idx)=>{
       return <Grid item xs={12} sm={6} lg={4} xl={3} key={`${country.name}-${idx}`} >
               <CountryCard
                 continent={country.continent}
@@ -42,8 +54,21 @@ function Countries({ data }: CountriesProps) {
               />
             </Grid>
     })    
-  }, [currentCountries]);
+  }, [currentCountries, paginatedCountries]);
 
+  const numberOfPages = useMemo(()=>{
+    if (currentCountries){
+      return Math.ceil(currentCountries?.length / postsPerPage)
+    }
+  }, [currentCountries, postsPerPage]);
+
+  // function(event: React.ChangeEvent, page: number) => void
+
+  const handleChangePages = useCallback((event: ChangeEvent<Element>, page: number): void =>{
+    console.log("EVENT: ", event)
+    // console.log("PAGE: ", page)
+    setCurrentPage(page);
+  },[]);
 
   return (
     <Box sx={{ color: '#333666', backgroundColor: '#f4f4f4', opacity: '0.99' }}>
@@ -54,6 +79,8 @@ function Countries({ data }: CountriesProps) {
       <SearchBar 
         data={data.countries} 
         handleSearchFilter={setCurrentCountries} 
+        resetPagination={setCurrentPage}
+        // handleSearchFilter={()=>console.log("FILTER")} 
       />
 
       {countriesToDisplay &&
@@ -66,7 +93,12 @@ function Countries({ data }: CountriesProps) {
         <Typography variant='h5' sx={{ textAlign: 'center', marginTop: 5, padding: 5 }}>No Results Found</Typography> 
       }
 
-      <Pagination count={10} color="secondary" size='large' />
+      <Pagination 
+        count={numberOfPages} 
+        onChange={handleChangePages}
+        color="secondary" 
+        size='large' 
+      />
     </Box >
   )
 }

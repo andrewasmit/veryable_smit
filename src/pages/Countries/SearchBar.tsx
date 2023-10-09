@@ -16,10 +16,11 @@ import { useAppSelector } from "../../redux/hooks";
 interface SearchBarProps{
   data: Country[] | undefined;
   handleSearchFilter: Dispatch<SetStateAction<Country[] | undefined>>
+  resetPagination: (page: number)=> void;
 }
 
 // Component Definition
-function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
+function SearchBar({ data, handleSearchFilter, resetPagination }: SearchBarProps) {
 
   const [search, setSearch] = useState('');
   const [checked, setChecked] = useState(false);
@@ -36,6 +37,7 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
 
   const handleFilterData = useCallback(()=>{
     const filteredData = allData?.filter(country=>country.name.toLowerCase().includes(search.toLowerCase()))
+
     handleSearchFilter(filteredData)
   },[data, search]);
 
@@ -43,6 +45,7 @@ function SearchBar({ data, handleSearchFilter }: SearchBarProps) {
     handleSearchFilter(allData)
     setSearch('');
     setChecked(false);
+    resetPagination(1);
   },[]);
 
   const handleCheck = useCallback(()=>{
