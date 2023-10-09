@@ -1,5 +1,5 @@
 // External Dependencies
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { Typography } from "@mui/material"
 
 // Internal Dependencies
@@ -12,10 +12,9 @@ import { findRandomCountry } from "../../utils/findRandomCountry";
 
 function Game({ data }:CountriesProps) {
 
-  // const randomIdx = Math.floor(Math.random() * data.countries?.length);
-  // const randomCountry = data.countries[randomIdx];
-  const randomWrongCountries = [];
+  const [score, setScore] = useState(0)
   const correctAnswer = findRandomCountry(data);
+  const randomWrongCountries = [];
 
   for(let i =0; i<3; i++){
     const wrongAnswer = findRandomCountry(data);
@@ -26,13 +25,13 @@ function Game({ data }:CountriesProps) {
   };
 
   const questionToDisplay = useMemo(()=>{
-    return <QuestionCard correctAnswerData={correctAnswer} wrongAnswerData={randomWrongCountries}/>
-  },[correctAnswer, randomWrongCountries])
+    return <QuestionCard correctAnswerData={correctAnswer} wrongAnswerData={randomWrongCountries} score={score} setScore={setScore} />
+  },[correctAnswer, randomWrongCountries, score])
 
   
   return (
     <>
-      <Typography variant="h2" sx={{ textAlign:'center',color: '#fff' }} >This is the Game Page</Typography>
+      <Typography variant="h2" sx={{ textAlign:'center', backgroundColor: '#333366', color: '#ffff33', opacity: 0.85 }} >Score: {score}</Typography>
       { questionToDisplay }
     </>
   )

@@ -1,18 +1,18 @@
 // External Dependencies
-import { useCallback, useMemo, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react'
 import { 
   Typography, 
   Card, 
   CardActions, 
-  Box
+  Box,
+  Button
 } from '@mui/material'
 
 // Internal Dependencies
-// import { useIsOpen } from '../../utils/useIsOpen';
+import { shuffleArray } from '../../utils/shuffleArray';
 
 // Local Dependencies
 import Selection from './Selection';
-import { shuffleArray } from '../../utils/shuffleArray';
 
 
 export interface PotentialAnswer{
@@ -22,17 +22,28 @@ export interface PotentialAnswer{
 interface CountryCardProps{
   correctAnswerData: PotentialAnswer;
   wrongAnswerData: PotentialAnswer[];
+  score: number;
+  setScore: any;
 }
 
 // Component Definition
-function CountryCard({ correctAnswerData, wrongAnswerData }: CountryCardProps ) {
+function CountryCard({ correctAnswerData, wrongAnswerData, score, setScore }: CountryCardProps ) {
 
   const [isAnswered, setIsAnswered] = useState(false);
-  // const { isOpen, handleOpen, handleClose } = useIsOpen();
+  let isCorrect: boolean;
   
-  const handleChooseAnswer = useCallback(()=>{
+  const handleChooseAnswer = useCallback((e)=>{
     setIsAnswered(true);
-  }, []);
+    if (e.target.innerText.toLowerCase() === correctAnswerData.name.toLowerCase()){
+      isCorrect = true;
+    } else
+      isCorrect = false;
+  }, [correctAnswerData]);
+
+  const handleNewGame = useCallback(()=>{
+    setIsAnswered(false);
+    isCorrect ? setScore(score + 1) : setScore(score - 1);
+  }, [score])
 
   const correctAnswer = useMemo(()=>{
     return <Selection
@@ -58,23 +69,25 @@ function CountryCard({ correctAnswerData, wrongAnswerData }: CountryCardProps ) 
 
   const selectionsToDisplay = useMemo(()=>{
     const answers = [...wrongAnswers, correctAnswer]
-    // wrongAnswers.push(correctAnswer)
     return shuffleArray(answers);
   },[correctAnswer, wrongAnswers])
 
+  
   return (
     <Box component="div" sx={{ padding: 2 }}>
       <Card elevation= {3} sx={{ textAlign: 'center', maxWidth: 550, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h3'>Guess the flag!</Typography>
+
         <Typography variant='h1'>{correctAnswerData.emoji}</Typography>
-        
-        {isAnswered &&
-          <Typography variant='h5'><strong>Country:</strong> {correctAnswerData.name}</Typography>
-        }
 
         <CardActions sx={{ display: 'block', margin:'auto' }}>
           {selectionsToDisplay}
         </CardActions>
+
+        {isAnswered &&
+          <Button onClick={handleNewGame}>Next Question</Button>
+        }
+
       </Card>
     </Box>
   )
