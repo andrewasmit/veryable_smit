@@ -5,7 +5,11 @@
 GlobeGuru is a fun way to learn more about the world we live in.
 It is compromised of a list of all the countries in the world with some cultural information about each country; their native languages, currency, how many states they have, and the flag of their country.
 
+![GlobeGuru | Study](gg_study.gif)
+
 As a fun way to test how much you know, there is a simple, but fun guessing game associated with each country's flag.
+
+![GlobeGuru | Game](gg_game.gif)
 **How many correct guesses can you get in a row?**
 
 ## About GlobeGuru
