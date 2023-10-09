@@ -21,7 +21,8 @@ function Game({ data }:CountriesProps) {
     const wrongAnswer = findRandomCountry(data);
     if(wrongAnswer.name !== correctAnswer.name){
       randomWrongCountries.push(wrongAnswer)
-    }
+    } else 
+    i-=1;
   };
 
   const questionToDisplay = useMemo(()=>{
