@@ -11,6 +11,7 @@ import Countries from './pages/Countries';
 //Local Dependencies
 import './App.css'
 import { useEffect } from 'react';
+import Game from './pages/Game';
 
 
 // Component Definition
@@ -37,7 +38,7 @@ function App() {
       <Routes>
         <Route path='/home' element={<Home loading={loading} />} />
         <Route path='/countries' element={<Countries data={data}  />} />
-        {/* <Route path='/game' element={<Game loading={loading}/>} /> */}
+        <Route path='/game' element={<Game data={data} />} />
       </Routes>
     </div>
   )
