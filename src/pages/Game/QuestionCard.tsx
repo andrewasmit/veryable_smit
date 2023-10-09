@@ -8,9 +8,6 @@ import {
   Button
 } from '@mui/material'
 
-// Internal Dependencies
-// import { shuffleArray } from '../../utils/shuffleArray';
-
 // Local Dependencies
 import Selection from './Selection';
 
@@ -33,22 +30,24 @@ function CountryCard({  answerData, score, setScore }: CountryCardProps ) {
 
   const handleChooseAnswer = useCallback((e: any)=>{
     setIsAnswered(true);
-    console.log("EVENT: ", e.target.innerText)
-    console.log("answer: ", answerData[winnerIdx].name)
+    
     if (e.target.innerText.toLowerCase() === answerData[winnerIdx].name.toLowerCase()){
       isCorrect = true;
     } else
       isCorrect = false;
   }, [answerData]);
 
+
   const handleNewGame = useCallback(()=>{
     setIsAnswered(false);
     isCorrect ? setScore(score + 1) : setScore(score - 1);
   }, [score])
   
+
   const winnerIdx = useMemo(()=>{
     return Math.floor(Math.random() * 4)
   },[answerData])
+
 
   const selectionsToDisplay: any = [];
 
@@ -64,8 +63,6 @@ function CountryCard({  answerData, score, setScore }: CountryCardProps ) {
       />
     )
   };
-
-  const correctAnswer = selectionsToDisplay[winnerIdx];
 
 
   return (
