@@ -62,13 +62,13 @@ function SearchBar({ data, handleSearchFilter, resetPagination }: SearchBarProps
   },[checked, favoriteCountries]);
 
   return (
-    <Box sx={{ maxWidth: '800px', margin: 'auto', display: 'flex', paddingBottom: 2 }}>
+    <Box sx={{ maxWidth: '800px', margin: 'auto', display: 'flex',  paddingBottom: 2 }}>
       <TextField 
         label="Search for a Country" 
         value={search} 
         onChange={handleSearchText}
         color="primary"
-        sx={{ width: '400px', background: '#fff' }}
+        sx={{ minWidth: '400px', background: '#fff' }}
       />
       
       <Button 
@@ -76,7 +76,7 @@ function SearchBar({ data, handleSearchFilter, resetPagination }: SearchBarProps
         onClick={handleFilterData} 
         variant="contained" 
         color="primary" 
-        sx={{ marginLeft: 1 }}
+        sx={{ marginLeft: 1, minWidth: '90px' }}
       >
         Search
       </Button>
@@ -84,7 +84,7 @@ function SearchBar({ data, handleSearchFilter, resetPagination }: SearchBarProps
         onClick={handleResetFilter} 
         variant="contained" 
         color="secondary" 
-        sx={{ marginLeft: 1 }}
+        sx={{ marginLeft: 1, minWidth: '90px' }}
       >
         Clear
       </Button>
