@@ -9,7 +9,6 @@ import { Country } from '../../gql/getCountries';
 import CountryCard from './CountryCard';
 import SearchBar from './SearchBar';
 
-
 // Local Typings
 export interface CountriesProps{
   data: {
@@ -21,8 +20,9 @@ export interface CountriesProps{
 function Countries({ data }: CountriesProps) {
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setpostsPerPage] = useState(8);
   const [currentCountries, setCurrentCountries] = useState(data.countries);
+
+  const postsPerPage = 8;
 
   const lastIdx = useMemo(()=>{
     return currentPage * postsPerPage;
@@ -62,10 +62,13 @@ function Countries({ data }: CountriesProps) {
     setCurrentPage(page);
   },[]);
 
+
   return (
     <Box sx={{ color: '#333666', backgroundColor: '#f4f4f4', opacity: '0.99' }}>
-      <Typography variant='h3' sx={{ padding: 4, textAlign: 'center', fontSize: '50px' }}>
-        Search the Globe for info about other  countries!
+      <Typography variant='h3' sx={{ background: '#333366', opacity: 0.85, color: '#fff', padding: 4, textAlign: 'center', fontSize: '50px', marginBottom: 4 }}>
+        <Box component="span" sx={{ color: '#ffff44', background: '#333366', opacity:0.9, paddingRight: 2 }}>
+          Travel the Globe 
+        </Box> and learn more about our world!
       </Typography>
 
       <SearchBar 
