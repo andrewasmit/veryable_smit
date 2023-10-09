@@ -1,5 +1,5 @@
 // External Dependencies
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { 
   Button, 
   Typography, 
@@ -11,13 +11,18 @@ import {
 // Internal Dependencies
 import { Country } from '../../gql/getCountries'
 import { useIsOpen } from '../../utils/useIsOpen';
+import Selection from './Selection';
 
 
 // Component Definition
 function CountryCard({ data }: Country ) {
 
-  const [isAnswered, setIsAnswered] = useState(true);
+  const [isAnswered, setIsAnswered] = useState(false);
   const { isOpen, handleOpen, handleClose } = useIsOpen();
+  
+  const handleChooseAnswer = useCallback(()=>{
+    setIsAnswered(true);
+  }, []);
 
   const btnStyles = {
     marginTop: 2,  
@@ -46,7 +51,7 @@ function CountryCard({ data }: Country ) {
         <CardActions sx={{ display: 'block', margin:'auto' }}>
           <Button 
             size="small" 
-            onClick={handleOpen}
+            onClick={handleChooseAnswer}
             variant='contained'
             color='primary'
             fullWidth
@@ -57,9 +62,9 @@ function CountryCard({ data }: Country ) {
 
           <Button 
             size="small" 
-            onClick={handleOpen}
+            onClick={handleChooseAnswer}
             variant='contained'
-            color='primary'
+            color='error'
             fullWidth
             sx={btnStyles}
           >
@@ -68,14 +73,21 @@ function CountryCard({ data }: Country ) {
 
           <Button 
             size="small" 
-            onClick={handleOpen}
+            onClick={handleChooseAnswer}
             variant='contained'
-            color='primary'
+            color='success'
             fullWidth
             sx={btnStyles}
           >
             Option 3
           </Button>
+
+          <Selection
+            handleChooseAnswer={handleChooseAnswer}
+            text={'THIS IS A TEST'}
+            isCorrectAnswer={true}
+            isAnswered={isAnswered}
+          />
 
         </CardActions>
       </Card>
