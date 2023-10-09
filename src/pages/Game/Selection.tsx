@@ -8,7 +8,6 @@ interface SelectionProps{
   handleChooseAnswer: ()=> void;
   text: string;
   isCorrectAnswer: boolean;
-  styles?: {};
   isAnswered: boolean;
 }
 
@@ -27,7 +26,7 @@ const btnStyles = {
 }
 
 // Component Definition
-function Selection({ handleChooseAnswer, text, isCorrectAnswer, isAnswered, styles }: SelectionProps) {
+function Selection({ handleChooseAnswer, text, isCorrectAnswer, isAnswered }: SelectionProps) {
 
   const answeredColor = useMemo(()=>{
     return isCorrectAnswer ? 'success' : 'error'

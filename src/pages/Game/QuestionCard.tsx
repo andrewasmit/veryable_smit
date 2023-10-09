@@ -1,7 +1,6 @@
 // External Dependencies
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { 
-  Button, 
   Typography, 
   Card, 
   CardActions, 
@@ -9,86 +8,72 @@ import {
 } from '@mui/material'
 
 // Internal Dependencies
-import { Country } from '../../gql/getCountries'
-import { useIsOpen } from '../../utils/useIsOpen';
-import Selection from './Selection';
+// import { useIsOpen } from '../../utils/useIsOpen';
 
+// Local Dependencies
+import Selection from './Selection';
+import { shuffleArray } from '../../utils/shuffleArray';
+
+
+export interface PotentialAnswer{
+  name: string;
+  emoji: string;
+}
+interface CountryCardProps{
+  correctAnswerData: PotentialAnswer;
+  wrongAnswerData: PotentialAnswer[];
+}
 
 // Component Definition
-function CountryCard({ data }: Country ) {
+function CountryCard({ correctAnswerData, wrongAnswerData }: CountryCardProps ) {
 
   const [isAnswered, setIsAnswered] = useState(false);
-  const { isOpen, handleOpen, handleClose } = useIsOpen();
+  // const { isOpen, handleOpen, handleClose } = useIsOpen();
   
   const handleChooseAnswer = useCallback(()=>{
     setIsAnswered(true);
   }, []);
 
-  const btnStyles = {
-    marginTop: 2,  
-    ':hover':{ 
-      color: '#333366', 
-      backgroundColor: '#ffff33', 
-      boxShadow: 15
-    },
-    ':not(:first-of-type)':{
-      marginLeft: 0,
-    },
-    padding: 1,
-    fontSize: 20
-  }
+  const correctAnswer = useMemo(()=>{
+    return <Selection
+            key={correctAnswerData.name}
+            handleChooseAnswer={handleChooseAnswer} 
+            text={correctAnswerData.name} 
+            isCorrectAnswer={true} 
+            isAnswered={isAnswered} 
+          />
+  },[correctAnswerData, isAnswered, handleChooseAnswer])
+
+  const wrongAnswers = useMemo(()=>{
+    return wrongAnswerData.map(ans=>{
+      return <Selection 
+                key={ans.name}
+                handleChooseAnswer={handleChooseAnswer} 
+                text={ans.name} 
+                isCorrectAnswer={false} 
+                isAnswered={isAnswered} 
+              />
+    })
+  },[wrongAnswerData, isAnswered, handleChooseAnswer])
+
+  const selectionsToDisplay = useMemo(()=>{
+    const answers = [...wrongAnswers, correctAnswer]
+    // wrongAnswers.push(correctAnswer)
+    return shuffleArray(answers);
+  },[correctAnswer, wrongAnswers])
 
   return (
     <Box component="div" sx={{ padding: 2 }}>
       <Card elevation= {3} sx={{ textAlign: 'center', maxWidth: 550, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h3'>Guess the flag!</Typography>
-        <Typography variant='h1'>{data.emoji}</Typography>
+        <Typography variant='h1'>{correctAnswerData.emoji}</Typography>
         
         {isAnswered &&
-          <Typography variant='h5'><strong>Country:</strong> {data.name}</Typography>
+          <Typography variant='h5'><strong>Country:</strong> {correctAnswerData.name}</Typography>
         }
 
         <CardActions sx={{ display: 'block', margin:'auto' }}>
-          <Button 
-            size="small" 
-            onClick={handleChooseAnswer}
-            variant='contained'
-            color='primary'
-            fullWidth
-            sx={btnStyles}
-          >
-            Option 1
-          </Button>
-
-          <Button 
-            size="small" 
-            onClick={handleChooseAnswer}
-            variant='contained'
-            color='error'
-            fullWidth
-            sx={btnStyles}
-          >
-            Option 2
-          </Button>
-
-          <Button 
-            size="small" 
-            onClick={handleChooseAnswer}
-            variant='contained'
-            color='success'
-            fullWidth
-            sx={btnStyles}
-          >
-            Option 3
-          </Button>
-
-          <Selection
-            handleChooseAnswer={handleChooseAnswer}
-            text={'THIS IS A TEST'}
-            isCorrectAnswer={true}
-            isAnswered={isAnswered}
-          />
-
+          {selectionsToDisplay}
         </CardActions>
       </Card>
     </Box>
