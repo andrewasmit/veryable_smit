@@ -33,12 +33,13 @@ function CountryCard({  answerData, score, setScore }: CountryCardProps ) {
 
   const handleChooseAnswer = useCallback((e: any)=>{
     setIsAnswered(true);
-    console.log("EVENT: ", e)
-    if (e.target.innerText.toLowerCase() === correctAnswer.props.name.toLowerCase()){
+    console.log("EVENT: ", e.target.innerText)
+    console.log("answer: ", answerData[winnerIdx].name)
+    if (e.target.innerText.toLowerCase() === answerData[winnerIdx].name.toLowerCase()){
       isCorrect = true;
     } else
       isCorrect = false;
-  }, []);
+  }, [answerData]);
 
   const handleNewGame = useCallback(()=>{
     setIsAnswered(false);
@@ -47,7 +48,7 @@ function CountryCard({  answerData, score, setScore }: CountryCardProps ) {
   
   const winnerIdx = useMemo(()=>{
     return Math.floor(Math.random() * 4)
-  },[])
+  },[answerData])
 
   const selectionsToDisplay: any = [];
 
@@ -67,36 +68,6 @@ function CountryCard({  answerData, score, setScore }: CountryCardProps ) {
   const correctAnswer = selectionsToDisplay[winnerIdx];
 
 
-  
-
-  // const correctAnswer = useMemo(()=>{
-  //   return <Selection
-  //           key={correctAnswerData.name}
-  //           handleChooseAnswer={handleChooseAnswer} 
-  //           text={correctAnswerData.name} 
-  //           isCorrectAnswer={true} 
-  //           isAnswered={isAnswered} 
-  //         />
-  // },[correctAnswerData, isAnswered, handleChooseAnswer])
-
-  // const wrongAnswers = useMemo(()=>{
-  //   return wrongAnswerData.map(ans=>{
-  //     return <Selection 
-  //               key={ans.name}
-  //               handleChooseAnswer={handleChooseAnswer} 
-  //               text={ans.name} 
-  //               isCorrectAnswer={false} 
-  //               isAnswered={isAnswered} 
-  //             />
-  //   })
-  // },[wrongAnswerData, isAnswered, handleChooseAnswer])
-
-  // const selectionsToDisplay = useMemo(()=>{
-  //   const answers = [...wrongAnswers, correctAnswer]
-  //   return shuffleArray(answers);
-  // },[correctAnswer, wrongAnswers])
-
-  
   return (
     <Box component="div" sx={{ padding: 2 }}>
       <Card elevation= {3} sx={{ textAlign: 'center', maxWidth: 550, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
