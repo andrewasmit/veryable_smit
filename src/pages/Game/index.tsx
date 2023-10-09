@@ -4,29 +4,27 @@ import { Typography } from "@mui/material"
 
 // Internal Dependencies
 import { CountriesProps } from "../Countries"
+import { findRandomCountry } from "../../utils/findRandomCountry";
 
 // Local Dependencies
 import QuestionCard from './QuestionCard'
-import { findRandomCountry } from "../../utils/findRandomCountry";
-
 
 function Game({ data }:CountriesProps) {
 
   const [score, setScore] = useState(0)
-  const correctAnswer = findRandomCountry(data);
-  const randomWrongCountries: any = [];
+  const potentialAnswers: any = [];
 
-  for(let i =0; i<3; i++){
-    const wrongAnswer = findRandomCountry(data);
-    if(wrongAnswer.name !== correctAnswer.name){
-      randomWrongCountries.push(wrongAnswer)
+  for(let i =0; i<4; i++){
+    const newCountry = findRandomCountry(data);
+    if(!potentialAnswers.includes(newCountry)){
+      potentialAnswers.push(newCountry)
     } else 
     i-=1;
   };
 
   const questionToDisplay = useMemo(()=>{
-    return <QuestionCard correctAnswerData={correctAnswer} wrongAnswerData={randomWrongCountries} score={score} setScore={setScore} />
-  },[correctAnswer, randomWrongCountries, score])
+    return <QuestionCard answerData={potentialAnswers} score={score} setScore={setScore} />
+  },[potentialAnswers, score])
 
   
   return (

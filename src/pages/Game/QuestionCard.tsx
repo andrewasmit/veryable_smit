@@ -5,12 +5,11 @@ import {
   Card, 
   CardActions, 
   Box,
-  Button,
-  ButtonGroup
+  Button
 } from '@mui/material'
 
 // Internal Dependencies
-import { shuffleArray } from '../../utils/shuffleArray';
+// import { shuffleArray } from '../../utils/shuffleArray';
 
 // Local Dependencies
 import Selection from './Selection';
@@ -21,57 +20,81 @@ export interface PotentialAnswer{
   emoji: string;
 }
 interface CountryCardProps{
-  correctAnswerData: PotentialAnswer;
-  wrongAnswerData: PotentialAnswer[];
+  answerData: PotentialAnswer[];
   score: number;
   setScore: any;
 }
 
 // Component Definition
-function CountryCard({ correctAnswerData, wrongAnswerData, score, setScore }: CountryCardProps ) {
+function CountryCard({  answerData, score, setScore }: CountryCardProps ) {
 
   const [isAnswered, setIsAnswered] = useState(false);
   let isCorrect: boolean;
-  
+
   const handleChooseAnswer = useCallback((e: any)=>{
     setIsAnswered(true);
-    if (e.target.innerText.toLowerCase() === correctAnswerData.name.toLowerCase()){
+    console.log("EVENT: ", e)
+    if (e.target.innerText.toLowerCase() === correctAnswer.props.name.toLowerCase()){
       isCorrect = true;
     } else
       isCorrect = false;
-  }, [correctAnswerData]);
+  }, []);
 
   const handleNewGame = useCallback(()=>{
     setIsAnswered(false);
     isCorrect ? setScore(score + 1) : setScore(score - 1);
   }, [score])
+  
+  const winnerIdx = useMemo(()=>{
+    return Math.floor(Math.random() * 4)
+  },[])
 
-  const correctAnswer = useMemo(()=>{
-    return <Selection
-            key={correctAnswerData.name}
-            handleChooseAnswer={handleChooseAnswer} 
-            text={correctAnswerData.name} 
-            isCorrectAnswer={true} 
-            isAnswered={isAnswered} 
-          />
-  },[correctAnswerData, isAnswered, handleChooseAnswer])
+  const selectionsToDisplay: any = [];
 
-  const wrongAnswers = useMemo(()=>{
-    return wrongAnswerData.map(ans=>{
-      return <Selection 
-                key={ans.name}
-                handleChooseAnswer={handleChooseAnswer} 
-                text={ans.name} 
-                isCorrectAnswer={false} 
-                isAnswered={isAnswered} 
-              />
-    })
-  },[wrongAnswerData, isAnswered, handleChooseAnswer])
+  for(let i =0; i<4; i++){
+    const country = answerData[i]
+    selectionsToDisplay.push(
+      <Selection
+        key={country.name}
+        handleChooseAnswer={handleChooseAnswer} 
+        text={country.name} 
+        isCorrectAnswer={i === winnerIdx} 
+        isAnswered={isAnswered} 
+      />
+    )
+  };
 
-  const selectionsToDisplay = useMemo(()=>{
-    const answers = [...wrongAnswers, correctAnswer]
-    return shuffleArray(answers);
-  },[correctAnswer, wrongAnswers])
+  const correctAnswer = selectionsToDisplay[winnerIdx];
+
+
+  
+
+  // const correctAnswer = useMemo(()=>{
+  //   return <Selection
+  //           key={correctAnswerData.name}
+  //           handleChooseAnswer={handleChooseAnswer} 
+  //           text={correctAnswerData.name} 
+  //           isCorrectAnswer={true} 
+  //           isAnswered={isAnswered} 
+  //         />
+  // },[correctAnswerData, isAnswered, handleChooseAnswer])
+
+  // const wrongAnswers = useMemo(()=>{
+  //   return wrongAnswerData.map(ans=>{
+  //     return <Selection 
+  //               key={ans.name}
+  //               handleChooseAnswer={handleChooseAnswer} 
+  //               text={ans.name} 
+  //               isCorrectAnswer={false} 
+  //               isAnswered={isAnswered} 
+  //             />
+  //   })
+  // },[wrongAnswerData, isAnswered, handleChooseAnswer])
+
+  // const selectionsToDisplay = useMemo(()=>{
+  //   const answers = [...wrongAnswers, correctAnswer]
+  //   return shuffleArray(answers);
+  // },[correctAnswer, wrongAnswers])
 
   
   return (
@@ -79,7 +102,7 @@ function CountryCard({ correctAnswerData, wrongAnswerData, score, setScore }: Co
       <Card elevation= {3} sx={{ textAlign: 'center', maxWidth: 550, padding:4, margin:'auto', ':hover':{ boxShadow:20 } }}>
         <Typography variant='h3'>Guess the flag!</Typography>
 
-        <Typography variant='h1'>{correctAnswerData.emoji}</Typography>
+        <Typography variant='h1'>{answerData[winnerIdx].emoji}</Typography>
 
         <CardActions sx={{ display: 'block', margin:'auto' }}>
           {selectionsToDisplay}
