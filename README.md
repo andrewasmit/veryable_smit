@@ -1,4 +1,14 @@
-# Take home assessment
+# 🌎 GlobeGuru 🌎
+
+## About GlobeGuru
+
+GlobeGuru is a fun way to learn more about the world we live in.
+It is compromised of a list of all the countries in the world with some cultural information about each country; their native languages, currency, how many states they have, and the flag of their country.
+
+As a fun way to test how much you know, there is a simple, but fun guessing game associated with each country's flag.
+**How many correct guesses can you get in a row?**
+
+## About GlobeGuru
 
 This React application is built using modern web technologies to provide a dynamic and responsive user experience. It leverages the following key technologies and libraries:
 
@@ -10,24 +20,34 @@ This React application is built using modern web technologies to provide a dynam
 
 - **Material-UI (MUI):** A popular and customizable React component library that ensures a consistent and visually appealing design across the application.
 
+- This app also makes use of the Countries GraphQL API from [trevorblades](https://github.com/trevorblades/countries). You can get more info on it [here](https://studio.apollographql.com/public/countries/variant/current/home)
+
 ## Getting Started
 
-Provide instructions on how to set up and run your React application locally.
+- Fork and Clone this repo
+- Once installed locally, `cd` into the repo and run `yarn` to install all dependencies
+- Then, run `yarn dev` to start up the server and open a browser to the Home page.
+- Once here, you should be able to interact with the site as intended.
 
 ### Prerequisites
 
-React supported Noe version >= 15.5. 4+ .
+React supported Node version >= 15.5. 4+ .
 
-For example:
 - [Node.js](https://nodejs.org/) - Ensure you have Node.js installed. You can download it [here](https://nodejs.org/).
 
-### Installation
+### Prompt/Future Goals
 
-Step-by-step guide on how to clone the repository and set up the project locally.
+In the span of a weekend, I was tasked with a simple prompt.
+I was asked to utilize a specific API, fetch and display the information in a grid, and when each element was clicked, showcase more information about that element.
 
-1. Clone the repository:
-   ```shell
-   git clone https://github.com/SaidAbedi/th-pm.git
+GlobeGuru is the result of this prompt/challenge.
+I tried my best to of course hit the requirements of the prompt, but do so as creatively as possible.
 
-2. Documentation on the Graph QL API [here](https://countries.trevorblades.com/graphql) or [here](https://studio.apollographql.com/public/countries/variant/current/explorer)
-   
+For future goals, I would add or built-out the following features
+
+- Allow users to choose how many posts-per-page in the pagination
+- Fix the shuffling of answers in the game after a selection has been chosen
+- If a user gets question wrong in the game, add a 'Quick add favorites' for studying/reviewing purposes
+- Add a countdown-timer to the game component
+- Build out more content in the home landing page (rules for game, tech used, etc.)
+- Keep track of users to create a leaderboard
