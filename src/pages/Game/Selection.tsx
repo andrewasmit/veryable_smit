@@ -5,7 +5,7 @@ import { Button } from '@mui/material'
 
 // Local Typings
 interface SelectionProps{
-  handleChooseAnswer: ()=> void;
+  handleChooseAnswer: (e: React.MouseEvent<HTMLElement>)=> void;
   text: string;
   isCorrectAnswer: boolean;
   isAnswered: boolean;

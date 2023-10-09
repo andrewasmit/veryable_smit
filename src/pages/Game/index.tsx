@@ -14,7 +14,7 @@ function Game({ data }:CountriesProps) {
 
   const [score, setScore] = useState(0)
   const correctAnswer = findRandomCountry(data);
-  const randomWrongCountries = [];
+  const randomWrongCountries: any = [];
 
   for(let i =0; i<3; i++){
     const wrongAnswer = findRandomCountry(data);

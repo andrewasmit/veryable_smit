@@ -1,11 +1,12 @@
 // External Dependencies
-import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { 
   Typography, 
   Card, 
   CardActions, 
   Box,
-  Button
+  Button,
+  ButtonGroup
 } from '@mui/material'
 
 // Internal Dependencies
@@ -32,7 +33,7 @@ function CountryCard({ correctAnswerData, wrongAnswerData, score, setScore }: Co
   const [isAnswered, setIsAnswered] = useState(false);
   let isCorrect: boolean;
   
-  const handleChooseAnswer = useCallback((e)=>{
+  const handleChooseAnswer = useCallback((e: any)=>{
     setIsAnswered(true);
     if (e.target.innerText.toLowerCase() === correctAnswerData.name.toLowerCase()){
       isCorrect = true;
@@ -85,7 +86,24 @@ function CountryCard({ correctAnswerData, wrongAnswerData, score, setScore }: Co
         </CardActions>
 
         {isAnswered &&
-          <Button onClick={handleNewGame}>Next Question</Button>
+            <Button 
+              onClick={handleNewGame} 
+              variant='outlined' 
+              color='secondary'
+              sx={{ 
+                margin: 2, 
+                padding: 2, 
+                backgroundColor: '#333366', 
+                color: '#ffff33', 
+                ':hover':{ 
+                  color: '#333366', 
+                  backgroundColor: '#ffff33', 
+                  boxShadow: 15
+                  } 
+                }}
+            >
+              Next Question
+            </Button>
         }
 
       </Card>
