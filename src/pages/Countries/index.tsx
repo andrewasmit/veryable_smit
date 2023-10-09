@@ -1,6 +1,6 @@
 // External Dependencies
 import { Box, Grid, Pagination, Typography } from '@mui/material'
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 // Internal Dependencies
 import { Country } from '../../gql/getCountries';
@@ -31,12 +31,7 @@ function Countries({ data }: CountriesProps) {
   const firstIdx = useMemo(()=>{
     return lastIdx - postsPerPage;;
   },[lastIdx, postsPerPage]);
-
-  console.log("CURRENT PAGE: ", currentPage)
-  // const firstIdx = lastIdx - postsPerPage;
   
-  // const [currentCountries, setCurrentCountries] = useState(data.countries?.slice(firstIdx, lastIdx));
-
   const paginatedCountries = useMemo(()=>{
     return currentCountries?.slice(firstIdx, lastIdx)
   }, [currentPage, currentCountries, postsPerPage, firstIdx, lastIdx])
@@ -62,11 +57,8 @@ function Countries({ data }: CountriesProps) {
     }
   }, [currentCountries, postsPerPage]);
 
-  // function(event: React.ChangeEvent, page: number) => void
-
-  const handleChangePages = useCallback((event: ChangeEvent<Element>, page: number): void =>{
-    console.log("EVENT: ", event)
-    // console.log("PAGE: ", page)
+  const handleChangePages = useCallback((event: React.ChangeEvent<any>, page: number): void =>{
+    // console.log("EVENT: ", event)
     setCurrentPage(page);
   },[]);
 
@@ -80,7 +72,6 @@ function Countries({ data }: CountriesProps) {
         data={data.countries} 
         handleSearchFilter={setCurrentCountries} 
         resetPagination={setCurrentPage}
-        // handleSearchFilter={()=>console.log("FILTER")} 
       />
 
       {countriesToDisplay &&
@@ -93,7 +84,8 @@ function Countries({ data }: CountriesProps) {
         <Typography variant='h5' sx={{ textAlign: 'center', marginTop: 5, padding: 5 }}>No Results Found</Typography> 
       }
 
-      <Pagination 
+      <Pagination
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 2, marginBottom: 5 }}
         count={numberOfPages} 
         onChange={handleChangePages}
         color="secondary" 
