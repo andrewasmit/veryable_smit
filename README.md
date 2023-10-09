@@ -7,10 +7,11 @@ It is compromised of a list of all the countries in the world with some cultural
 
 ![GlobeGuru | Study](gg_study.gif)
 
+## How many correct guesses can you get in a row?
+
 As a fun way to test how much you know, there is a simple, but fun guessing game associated with each country's flag.
 
 ![GlobeGuru | Game](gg_game.gif)
-**How many correct guesses can you get in a row?**
 
 ## About GlobeGuru
 
