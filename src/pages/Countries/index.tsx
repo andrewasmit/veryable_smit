@@ -1,5 +1,5 @@
 // External Dependencies
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid, Pagination, Typography } from '@mui/material'
 import { useMemo, useState } from 'react';
 
 // Internal Dependencies
@@ -20,10 +20,17 @@ export interface CountriesProps{
 // Component Definition
 function Countries({ data }: CountriesProps) {
 
-  const [searchedCountries, setSearchedCountries] = useState(data.countries);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setpostsPerPage] = useState(8);
+  // const [currentCountries, setCurrentCountries] = useState(data.countries);
+
+  const lastIdx = currentPage * postsPerPage;
+  const firstIdx = lastIdx - postsPerPage;
+  
+  const [currentCountries, setCurrentCountries] = useState(data.countries?.slice(firstIdx, lastIdx));
 
   const countriesToDisplay = useMemo(()=> {
-    return searchedCountries?.map((country, idx)=>{
+    return currentCountries?.map((country, idx)=>{
       return <Grid item xs={12} sm={6} lg={4} xl={3} key={`${country.name}-${idx}`} >
               <CountryCard
                 continent={country.continent}
@@ -35,7 +42,7 @@ function Countries({ data }: CountriesProps) {
               />
             </Grid>
     })    
-  }, [searchedCountries]);
+  }, [currentCountries]);
 
 
   return (
@@ -45,8 +52,8 @@ function Countries({ data }: CountriesProps) {
       </Typography>
 
       <SearchBar 
-        data={searchedCountries} 
-        handleSearchFilter={setSearchedCountries} 
+        data={data.countries} 
+        handleSearchFilter={setCurrentCountries} 
       />
 
       {countriesToDisplay &&
@@ -58,6 +65,8 @@ function Countries({ data }: CountriesProps) {
       {countriesToDisplay?.length === 0 && 
         <Typography variant='h5' sx={{ textAlign: 'center', marginTop: 5, padding: 5 }}>No Results Found</Typography> 
       }
+
+      <Pagination count={10} color="secondary" size='large' />
     </Box >
   )
 }
