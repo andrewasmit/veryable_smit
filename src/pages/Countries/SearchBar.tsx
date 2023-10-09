@@ -16,7 +16,7 @@ import { useAppSelector } from "../../redux/hooks";
 interface SearchBarProps{
   data: Country[] | undefined;
   handleSearchFilter: Dispatch<SetStateAction<Country[] | undefined>>
-  resetPagination: (page: number, event?: React.ChangeEvent<any>)=> void;
+  resetPagination: (page: number)=> void;
 }
 
 // Component Definition
@@ -58,6 +58,7 @@ function SearchBar({ data, handleSearchFilter, resetPagination }: SearchBarProps
     }
 
     setChecked(!checked)
+    resetPagination(1);
   },[checked, favoriteCountries]);
 
   return (
